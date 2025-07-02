@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2025-07-01T20:04:35.650477",
+    "report_id": "20250701200435",
+    "pdf_filename": "yolo_model-20250701_200435-20250701200435.pdf",
+    "image_filename": "20250701200354_20250701104953_20250621000216_glioma_38_jpg.rf.8d901e87945afba2f585cad0cb3dc0b0.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
+  },
+  {
+    "timestamp": "2025-07-01T20:23:33.730257",
+    "report_id": "20250701202333",
+    "pdf_filename": "yolo_model-20250701_202333-20250701202333.pdf",
+    "image_filename": "20250701202305_20250701104953_20250621000216_glioma_38_jpg.rf.8d901e87945afba2f585cad0cb3dc0b0.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
+  }
+]

@@ -1,0 +1,184 @@
+2025-07-01 10:58:51,847 - YOLO_Training - INFO - 日志记录器已启动，日志文件保存路径为:C:\Users\14854\Desktop\BTD\yoloserver\logs\train\temp_20250701-105851_yolo12n.log
+2025-07-01 10:58:51,848 - YOLO_Training - INFO - 日志记录器的根目录：              C:\Users\14854\Desktop\BTD\yoloserver\logs
+2025-07-01 10:58:51,848 - YOLO_Training - INFO - 日志记录器的名称:                YOLO_Training
+2025-07-01 10:58:51,848 - YOLO_Training - INFO - 日志记录器的类型:                train
+2025-07-01 10:58:51,848 - YOLO_Training - INFO - 日志记录器的级别：               INFO
+2025-07-01 10:58:51,849 - YOLO_Training - INFO - ============================相关设备============================
+2025-07-01 10:58:51,849 - YOLO_Training - INFO - 操作系统: Windows 11 (10.0.26100)
+2025-07-01 10:58:51,849 - YOLO_Training - INFO - Python版本: 3.12.11
+2025-07-01 10:58:51,849 - YOLO_Training - INFO - 处理器: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+2025-07-01 10:58:51,849 - YOLO_Training - INFO - CPU核心数: 16
+2025-07-01 10:58:52,850 - YOLO_Training - INFO - CPU占用率: 6.1%
+2025-07-01 10:58:52,853 - YOLO_Training - INFO - 内存占用: 11.83 GB / 15.63 GB (75.7%)
+2025-07-01 10:58:52,853 - YOLO_Training - INFO - ============================GPU=============================
+2025-07-01 10:58:52,854 - YOLO_Training - INFO - PyTorch版本: 2.7.1+cu126
+2025-07-01 10:58:52,854 - YOLO_Training - INFO - CUDA版本: 12.6
+2025-07-01 10:58:52,854 - YOLO_Training - INFO - cuDNN版本: 90701
+2025-07-01 10:58:52,854 - YOLO_Training - INFO - GPU可用: 是
+2025-07-01 10:58:52,856 - YOLO_Training - INFO - GPU名称: NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 10:58:52,857 - YOLO_Training - INFO - 已分配显存: 0.0 GB, 已保留显存: 0.0 GB, 总显存: 4.0 GB
+2025-07-01 10:58:52,857 - YOLO_Training - INFO - =========================日志记录器初始化成功=========================
+2025-07-01 10:58:52,857 - YOLO_Training - INFO - ================================YOLO 肿瘤检测训练脚本启动=================================
+2025-07-01 10:58:54,413 - YOLO_Training - INFO - ========================================
+2025-07-01 10:58:54,413 - YOLO_Training - INFO - 设备信息概览
+2025-07-01 10:58:54,413 - YOLO_Training - INFO - ========================================
+2025-07-01 10:58:54,413 - YOLO_Training - INFO - 基本设备信息:
+2025-07-01 10:58:54,413 - YOLO_Training - INFO -     操作系统            : Windows 11
+2025-07-01 10:58:54,413 - YOLO_Training - INFO -     Python版本          : 3.12.11
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     Python解释器路径    : F:\anaconda3\envs\medical-yolo\python.exe
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     Python虚拟环境      : medical-yolo
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     当前检测时间        : 2025-07-01 10:58:52
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     主机名              : SFnothing
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     当前用户            : 14854
+2025-07-01 10:58:54,414 - YOLO_Training - INFO - CPU信息:
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     CPU型号             : 12th Gen Intel(R) Core(TM) i5-12500H
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     CPU物理核心数       : 12
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     CPU逻辑核心数       : 16
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     CPU使用率           : 10.1%
+2025-07-01 10:58:54,414 - YOLO_Training - INFO - GPU信息:
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     CUDA是否可用        : True
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     CUDA版本            : 12.6
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     NVIDIA驱动程序版本  : 576.02
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     可用的GPU数量       : 1
+2025-07-01 10:58:54,414 - YOLO_Training - INFO - 内存信息:
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     总内存              : 15.63 GB
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     已使用内存          : 11.83 GB
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     剩余内存            : 3.80 GB
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     内存使用率          : 75.7%
+2025-07-01 10:58:54,414 - YOLO_Training - INFO - 环境信息:
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     PyTorch版本         : 2.7.1+cu126
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     cuDNN版本           : 90701
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     Ultralytics_Version : 8.3.159
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     ONNX版本            : 1.18.0
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     Numpy版本           : 2.3.0
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     OpenCV版本          : 4.11.0.86
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     Pillow版本          : 11.2.1
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     Torchvision版本     : 0.22.1+cu126
+2025-07-01 10:58:54,414 - YOLO_Training - INFO - 磁盘信息:
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     总空间              : 325.74 GB
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     已用空间            : 193.03 GB
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     剩余空间            : 132.71 GB
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     使用率              : 59.3%
+2025-07-01 10:58:54,414 - YOLO_Training - INFO - GPU详细列表:
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -   --- GPU 0 详情 ---
+2025-07-01 10:58:54,414 - YOLO_Training - INFO -     GPU_0_型号               : NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 10:58:54,415 - YOLO_Training - INFO -     GPU_0_总显存             : 4.00 GB
+2025-07-01 10:58:54,415 - YOLO_Training - INFO -     GPU_0_算力               : 8.6
+2025-07-01 10:58:54,415 - YOLO_Training - INFO -     GPU_0_多处理器数量       : 16
+2025-07-01 10:58:54,415 - YOLO_Training - INFO -     GPU_0_PyTorch_已分配显存 : 0.00 MB
+2025-07-01 10:58:54,415 - YOLO_Training - INFO -     GPU_0_PyTorch_已缓存显存 : 0.00 MB
+2025-07-01 10:58:54,417 - YOLO_Training - INFO -     GPU_0_利用率             : GPU:20% / Mem:11%
+2025-07-01 10:58:54,417 - YOLO_Training - INFO -     GPU_0_实时使用显存       : 1.07 GB
+2025-07-01 10:58:54,417 - YOLO_Training - INFO - ========================================
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - ========================================
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - 数据集信息 (Train 模式)
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - Config File         : data.yaml
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - Class Count         : 3
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - Class Names         : glioma_tumor, meningioma_tumor, pituitary_tumor
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - Sample Count        : 680
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - Data Source         : Train images from: C:\Users\14854\Desktop\BTD\yoloserver\data\train\images
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - ================开始模型参数信息================
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - Parameters
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - ________________________________________
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - data                : C:\Users\14854\Desktop\BTD\yoloserver\configs\data.yaml (来源: [命令行])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - epochs              : 1 (来源: [命令行])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - time                : 0.5 (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - batch               : 1 (来源: [命令行])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - imgsz               : 640 (来源: [命令行])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - device              : 0 (来源: [命令行])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - workers             : 8 (来源: [命令行])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - patience            : 100 (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - save                : True (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - save_period         : -1 (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - cache               : False (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - resume              : False (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - amp                 : True (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - project             : C:\Users\14854\Desktop\BTD\yoloserver\runs\detect (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - name                : train (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - exist_ok            : False (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - pretrained          : True (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - optimizer           : AdamW (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - seed                : 0 (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - deterministic       : True (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - single_cls          : False (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - classes             : None (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - rect                : False (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - cos_lr              : False (来源: [YAML])
+2025-07-01 10:58:54,425 - YOLO_Training - INFO - multi_scale         : False (来源: [YAML])
+2025-07-01 10:58:54,426 - YOLO_Training - INFO - box                 : 7.5 (来源: [YAML])
+2025-07-01 10:58:54,426 - YOLO_Training - INFO - cls                 : 0.5 (来源: [YAML])
+2025-07-01 10:58:54,426 - YOLO_Training - INFO - dfl                 : 1.5 (来源: [YAML])
+2025-07-01 10:58:54,426 - YOLO_Training - INFO - pose                : 12.0 (来源: [YAML])
+2025-07-01 10:58:54,426 - YOLO_Training - INFO - kobj                : 1.0 (来源: [YAML])
+2025-07-01 10:58:54,426 - YOLO_Training - INFO - lr0                 : 0.001 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - lrf                 : 0.01 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - momentum            : 0.937 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - weight_decay        : 0.0005 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - warmup_epochs       : 3.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - warmup_momentum     : 0.8 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - warmup_bias_lr      : 0.1 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - hsv_h               : 0.015 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - hsv_s               : 0.7 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - hsv_v               : 0.4 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - degrees             : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - translate           : 0.1 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - scale               : 0.5 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - shear               : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - perspective         : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - flipud              : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - fliplr              : 0.5 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - bgr                 : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - mosaic              : 1.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - mixup               : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - cutmix              : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - copy_paste          : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - copy_paste_mode     : flip (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - auto_augment        : randaugment (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - erasing             : 0.4 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - close_mosaic        : 10 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - nbs                 : 64 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - overlap_mask        : True (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - mask_ratio          : 4 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - dropout             : 0.0 (来源: [YAML])
+2025-07-01 10:58:54,427 - YOLO_Training - INFO - val                 : True (来源: [YAML])
+2025-07-01 10:58:54,428 - YOLO_Training - INFO - plots               : True (来源: [YAML])
+2025-07-01 10:58:54,428 - YOLO_Training - INFO - profile             : False (来源: [YAML])
+2025-07-01 10:58:54,428 - YOLO_Training - INFO - freeze              : None (来源: [YAML])
+2025-07-01 10:58:54,428 - YOLO_Training - INFO - fraction            : 1.0 (来源: [YAML])
+2025-07-01 10:58:54,428 - YOLO_Training - INFO - weights             : yolo12n.pt (来源: [命令行])
+2025-07-01 10:58:54,428 - YOLO_Training - INFO - 初始化模型,加载模型: yolo12n.pt
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - 性能测试：'模型训练' 执行耗时: 2 分 18.085 秒
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - ============================================================
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - YOLO Results Summary (Detect Task)
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - ============================================================
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - Task                : detect
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - Save Directory      : C:\Users\14854\Desktop\BTD\yoloserver\runs\detect\train
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - Timestamp           : 2025-07-01T11:01:12.907979
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 11:01:12,907 - YOLO_Training - INFO - Processing Speed (ms/image)
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Preprocess          : 0.480 ms
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Inference           : 9.823 ms
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Loss Calc           : 0.003 ms
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Postprocess         : 2.011 ms
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Total Per Image     : 12.317 ms
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Overall Evaluation Metrics
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Fitness Score       : 0.2381
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Precision(B)        : 0.3264
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Recall(B)           : 0.4435
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - mAP50(B)            : 0.3481
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - mAP50-95(B)         : 0.2259
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - Class-wise mAP@0.5:0.95 (Box Metrics)
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - ----------------------------------------
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - meningioma_tumor    : 0.4131
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - glioma_tumor        : 0.1734
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - pituitary_tumor     : 0.0912
+2025-07-01 11:01:12,908 - YOLO_Training - INFO - ============================================================
+2025-07-01 11:01:12,913 - INFO - best模型已经从C:\Users\14854\Desktop\BTD\yoloserver\runs\detect\train\weights\best.pt复制到至C:\Users\14854\Desktop\BTD\yoloserver\models\checkpoints\train_20250701-110112_yolo12n_best.pt
+2025-07-01 11:01:12,915 - INFO - last模型已经从C:\Users\14854\Desktop\BTD\yoloserver\runs\detect\train\weights\last.pt复制到至C:\Users\14854\Desktop\BTD\yoloserver\models\checkpoints\train_20250701-110112_yolo12n_last.pt
+2025-07-01 11:01:12,916 - INFO - YOLO 肿瘤检测训练脚本结束

@@ -1,0 +1,46 @@
+2025-07-01 10:56:19,484 - yolo_validate - INFO - 日志记录器已启动，日志文件保存路径为:C:\Users\14854\Desktop\BTD\yoloserver\logs\validate\validate_20250701-105619.log
+2025-07-01 10:56:19,484 - yolo_validate - INFO - 日志记录器的根目录：              C:\Users\14854\Desktop\BTD\yoloserver\logs
+2025-07-01 10:56:19,484 - yolo_validate - INFO - 日志记录器的名称:                yolo_validate
+2025-07-01 10:56:19,484 - yolo_validate - INFO - 日志记录器的类型:                validate
+2025-07-01 10:56:19,484 - yolo_validate - INFO - 日志记录器的级别：               INFO
+2025-07-01 10:56:19,485 - yolo_validate - INFO - ============================相关设备============================
+2025-07-01 10:56:19,486 - yolo_validate - INFO - 操作系统: Windows 11 (10.0.26100)
+2025-07-01 10:56:19,486 - yolo_validate - INFO - Python版本: 3.12.11
+2025-07-01 10:56:19,504 - yolo_validate - INFO - 处理器: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+2025-07-01 10:56:19,504 - yolo_validate - INFO - CPU核心数: 16
+2025-07-01 10:56:20,506 - yolo_validate - INFO - CPU占用率: 11.2%
+2025-07-01 10:56:20,509 - yolo_validate - INFO - 内存占用: 11.96 GB / 15.63 GB (76.5%)
+2025-07-01 10:56:20,509 - yolo_validate - INFO - ============================GPU=============================
+2025-07-01 10:56:20,522 - yolo_validate - INFO - PyTorch版本: 2.7.1+cu126
+2025-07-01 10:56:20,522 - yolo_validate - INFO - CUDA版本: 12.6
+2025-07-01 10:56:20,522 - yolo_validate - INFO - cuDNN版本: 90701
+2025-07-01 10:56:20,522 - yolo_validate - INFO - GPU可用: 是
+2025-07-01 10:56:20,525 - yolo_validate - INFO - GPU名称: NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 10:56:20,525 - yolo_validate - INFO - 已分配显存: 0.0 GB, 已保留显存: 0.0 GB, 总显存: 4.0 GB
+2025-07-01 10:56:20,525 - yolo_validate - INFO - =========================日志记录器初始化成功=========================
+2025-07-01 10:56:20,526 - yolo_validate - INFO - 开始验证数据集，模式为: SAMPLE，任务类型为: detection，删除非法数据: False
+2025-07-01 10:56:20,526 - yolo_validate - INFO - 验证data.yaml文件配置,配置文件路径为：C:\Users\14854\Desktop\BTD\yoloserver\configs\data.yaml
+2025-07-01 10:56:20,526 - yolo_validate - INFO - 当前验证任务类型为: DETECTION
+2025-07-01 10:56:20,527 - yolo_validate - INFO - 数据集类别数量与配置文件一致，类别数量为：3，类别为：['glioma_tumor', 'meningioma_tumor', 'pituitary_tumor']
+2025-07-01 10:56:20,527 - yolo_validate - INFO - 验证 train 路径为: C:\Users\14854\Desktop\BTD\yoloserver\data\train\images
+2025-07-01 10:56:20,535 - yolo_validate - INFO - 图像目录C:\Users\14854\Desktop\BTD\yoloserver\data\train\images 存在680张图像
+2025-07-01 10:56:20,535 - yolo_validate - INFO - train 验证模式为SAMPLE，将随机抽取68张图像进行验证
+2025-07-01 10:56:20,551 - yolo_validate - INFO - 验证 val 路径为: C:\Users\14854\Desktop\BTD\yoloserver\data\val\images
+2025-07-01 10:56:20,552 - yolo_validate - INFO - 图像目录C:\Users\14854\Desktop\BTD\yoloserver\data\val\images 存在37张图像
+2025-07-01 10:56:20,552 - yolo_validate - INFO - val 验证模式为SAMPLE，将随机抽取10张图像进行验证
+2025-07-01 10:56:20,555 - yolo_validate - INFO - 验证 test 路径为: C:\Users\14854\Desktop\BTD\yoloserver\data\test\images
+2025-07-01 10:56:20,555 - yolo_validate - INFO - 图像目录C:\Users\14854\Desktop\BTD\yoloserver\data\test\images 存在39张图像
+2025-07-01 10:56:20,556 - yolo_validate - INFO - test 验证模式为SAMPLE，将随机抽取10张图像进行验证
+2025-07-01 10:56:20,558 - yolo_validate - INFO - 基础数据集结构和标签内容验证通过！
+2025-07-01 10:56:20,558 - yolo_validate - INFO - 基础数据集验证完成：通过
+2025-07-01 10:56:20,558 - yolo_validate - INFO - 开始执行分割唯一性验证
+2025-07-01 10:56:20,558 - yolo_validate - INFO - 开始验证数据集划分的唯一性（train, val, test 之间无重复图像）。
+2025-07-01 10:56:20,566 - yolo_validate - INFO - 'train' 分割包含 680 张独立图像。
+2025-07-01 10:56:20,567 - yolo_validate - INFO - 'val' 分割包含 37 张独立图像。
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 'test' 分割包含 39 张独立图像。
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 训练集和验证集之间没有重复图像。
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 训练集和测试集之间没有重复图像。
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 验证集和测试集之间没有重复图像。
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 数据集分割唯一性验证通过：各子集之间没有发现重复图像。
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 分割唯一性验证完成：通过
+2025-07-01 10:56:20,568 - yolo_validate - INFO - 数据集验证完成：通过

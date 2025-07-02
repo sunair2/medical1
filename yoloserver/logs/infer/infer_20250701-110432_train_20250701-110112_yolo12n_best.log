@@ -1,0 +1,120 @@
+2025-07-01 11:04:32,931 - default - INFO - 日志记录器已启动，日志文件保存路径为:C:\Users\14854\Desktop\BTD\yoloserver\logs\infer\infer_20250701-110432_train_20250701-110112_yolo12n_best.log
+2025-07-01 11:04:32,931 - default - INFO - 日志记录器的根目录：              C:\Users\14854\Desktop\BTD\yoloserver\logs
+2025-07-01 11:04:32,931 - default - INFO - 日志记录器的名称:                default
+2025-07-01 11:04:32,931 - default - INFO - 日志记录器的类型:                infer
+2025-07-01 11:04:32,931 - default - INFO - 日志记录器的级别：               INFO
+2025-07-01 11:04:32,931 - default - INFO - ============================相关设备============================
+2025-07-01 11:04:32,932 - default - INFO - 操作系统: Windows 11 (10.0.26100)
+2025-07-01 11:04:32,932 - default - INFO - Python版本: 3.12.11
+2025-07-01 11:04:32,932 - default - INFO - 处理器: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+2025-07-01 11:04:32,932 - default - INFO - CPU核心数: 16
+2025-07-01 11:04:33,933 - default - INFO - CPU占用率: 10.2%
+2025-07-01 11:04:33,951 - default - INFO - 内存占用: 8.05 GB / 15.63 GB (51.5%)
+2025-07-01 11:04:33,951 - default - INFO - ============================GPU=============================
+2025-07-01 11:04:33,951 - default - INFO - PyTorch版本: 2.7.1+cu126
+2025-07-01 11:04:33,951 - default - INFO - CUDA版本: 12.6
+2025-07-01 11:04:33,951 - default - INFO - cuDNN版本: 90701
+2025-07-01 11:04:33,951 - default - INFO - GPU可用: 是
+2025-07-01 11:04:33,955 - default - INFO - GPU名称: NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 11:04:33,955 - default - INFO - 已分配显存: 0.0 GB, 已保留显存: 0.0 GB, 总显存: 4.0 GB
+2025-07-01 11:04:33,955 - default - INFO - =========================日志记录器初始化成功=========================
+2025-07-01 11:04:33,959 - default - INFO - 加载推理模型: C:\Users\14854\Desktop\BTD\yoloserver\models\checkpoints\train_20250701-110112_yolo12n_best.pt
+2025-07-01 11:04:33,959 - default - INFO - ========= 参数信息 =========
+2025-07-01 11:04:33,959 - default - INFO - ================开始模型参数信息================
+2025-07-01 11:04:33,959 - default - INFO - Parameters
+2025-07-01 11:04:33,959 - default - INFO - ________________________________________
+2025-07-01 11:04:33,959 - default - INFO - source              : C:\Users\14854\Desktop\BTD\yoloserver\data\test\images (来源: [命令行])
+2025-07-01 11:04:33,959 - default - INFO - device              : 0 (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - imgsz               : 640 (来源: [命令行])
+2025-07-01 11:04:33,959 - default - INFO - batch               : 1 (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - conf                : 0.25 (来源: [命令行])
+2025-07-01 11:04:33,959 - default - INFO - iou                 : 0.45 (来源: [命令行])
+2025-07-01 11:04:33,959 - default - INFO - max_det             : 300 (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - classes             : None (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - agnostic_nms        : False (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - augment             : False (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - half                : False (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - stream_buffer       : False (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - vid_stride          : 1 (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - retina_masks        : False (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - project             : C:\Users\14854\Desktop\BTD\yoloserver\runs\infer (来源: [YAML])
+2025-07-01 11:04:33,959 - default - INFO - name                : predict (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - save                : True (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - save_frames         : True (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - save_txt            : True (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - save_conf           : True (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - save_crop           : True (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - stream              : False (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - show                : False (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - show_labels         : True (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - show_conf           : True (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - show_boxes          : True (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - line_width          : 4 (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - visualize           : False (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - verbose             : True (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - beautify            : True (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - use-chinese         : True (来源: [YAML])
+2025-07-01 11:04:33,960 - default - INFO - font_size           : 26 (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - label_padding_x     : 10 (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - label_padding_y     : 10 (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - radius              : 4 (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - weights             : C:\Users\14854\Desktop\BTD\yoloserver\models\checkpoints\train_20250701-110112_yolo12n_best.pt (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - display_size        : 720 (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - use_chinese_mapping : False (来源: [命令行])
+2025-07-01 11:04:33,960 - default - INFO - ========= 设备信息 =========
+2025-07-01 11:04:35,553 - default - INFO - ========================================
+2025-07-01 11:04:35,554 - default - INFO - 设备信息概览
+2025-07-01 11:04:35,554 - default - INFO - ========================================
+2025-07-01 11:04:35,554 - default - INFO - 基本设备信息:
+2025-07-01 11:04:35,554 - default - INFO -     操作系统            : Windows 11
+2025-07-01 11:04:35,554 - default - INFO -     Python版本          : 3.12.11
+2025-07-01 11:04:35,554 - default - INFO -     Python解释器路径    : F:\anaconda3\envs\medical-yolo\python.exe
+2025-07-01 11:04:35,554 - default - INFO -     Python虚拟环境      : medical-yolo
+2025-07-01 11:04:35,554 - default - INFO -     当前检测时间        : 2025-07-01 11:04:33
+2025-07-01 11:04:35,554 - default - INFO -     主机名              : SFnothing
+2025-07-01 11:04:35,554 - default - INFO -     当前用户            : 14854
+2025-07-01 11:04:35,554 - default - INFO - CPU信息:
+2025-07-01 11:04:35,554 - default - INFO -     CPU型号             : 12th Gen Intel(R) Core(TM) i5-12500H
+2025-07-01 11:04:35,554 - default - INFO -     CPU物理核心数       : 12
+2025-07-01 11:04:35,554 - default - INFO -     CPU逻辑核心数       : 16
+2025-07-01 11:04:35,554 - default - INFO -     CPU使用率           : 17.1%
+2025-07-01 11:04:35,554 - default - INFO - GPU信息:
+2025-07-01 11:04:35,554 - default - INFO -     CUDA是否可用        : True
+2025-07-01 11:04:35,554 - default - INFO -     CUDA版本            : 12.6
+2025-07-01 11:04:35,554 - default - INFO -     NVIDIA驱动程序版本  : 576.02
+2025-07-01 11:04:35,554 - default - INFO -     可用的GPU数量       : 1
+2025-07-01 11:04:35,554 - default - INFO - 内存信息:
+2025-07-01 11:04:35,554 - default - INFO -     总内存              : 15.63 GB
+2025-07-01 11:04:35,554 - default - INFO -     已使用内存          : 8.06 GB
+2025-07-01 11:04:35,554 - default - INFO -     剩余内存            : 7.57 GB
+2025-07-01 11:04:35,554 - default - INFO -     内存使用率          : 51.5%
+2025-07-01 11:04:35,554 - default - INFO - 环境信息:
+2025-07-01 11:04:35,554 - default - INFO -     PyTorch版本         : 2.7.1+cu126
+2025-07-01 11:04:35,554 - default - INFO -     cuDNN版本           : 90701
+2025-07-01 11:04:35,554 - default - INFO -     Ultralytics_Version : 8.3.159
+2025-07-01 11:04:35,554 - default - INFO -     ONNX版本            : 1.18.0
+2025-07-01 11:04:35,554 - default - INFO -     Numpy版本           : 2.3.0
+2025-07-01 11:04:35,554 - default - INFO -     OpenCV版本          : 4.11.0.86
+2025-07-01 11:04:35,554 - default - INFO -     Pillow版本          : 11.2.1
+2025-07-01 11:04:35,554 - default - INFO -     Torchvision版本     : 0.22.1+cu126
+2025-07-01 11:04:35,554 - default - INFO - 磁盘信息:
+2025-07-01 11:04:35,554 - default - INFO -     总空间              : 325.74 GB
+2025-07-01 11:04:35,555 - default - INFO -     已用空间            : 193.09 GB
+2025-07-01 11:04:35,555 - default - INFO -     剩余空间            : 132.65 GB
+2025-07-01 11:04:35,555 - default - INFO -     使用率              : 59.3%
+2025-07-01 11:04:35,555 - default - INFO - GPU详细列表:
+2025-07-01 11:04:35,555 - default - INFO -   --- GPU 0 详情 ---
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_型号               : NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_总显存             : 4.00 GB
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_算力               : 8.6
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_多处理器数量       : 16
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_PyTorch_已分配显存 : 0.00 MB
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_PyTorch_已缓存显存 : 0.00 MB
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_利用率             : GPU:28% / Mem:13%
+2025-07-01 11:04:35,555 - default - INFO -     GPU_0_实时使用显存       : 1010.41 MB
+2025-07-01 11:04:35,555 - default - INFO - ========================================
+2025-07-01 11:04:35,555 - default - INFO - ========= 数据集信息 =========
+2025-07-01 11:04:35,558 - default - INFO - 此次使用的数据信息为: C:\Users\14854\Desktop\BTD\yoloserver\data\test\images
+2025-07-01 11:04:35,558 - default - INFO - 加载推理模型: C:\Users\14854\Desktop\BTD\yoloserver\models\checkpoints\train_20250701-110112_yolo12n_best.pt
+2025-07-01 11:04:39,135 - default - INFO - 推理完成，结果已保存至: C:\Users\14854\Desktop\BTD\yoloserver\runs\infer\exp
+2025-07-01 11:04:39,135 - default - INFO - ======================================推理结束======================================

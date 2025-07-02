@@ -1,0 +1,10 @@
+[
+  {
+    "timestamp": "2025-07-02T09:16:19.913022",
+    "report_id": "20250702091619",
+    "pdf_filename": "yolo_model-20250702_091619-20250702091619.pdf",
+    "image_filename": "20250702091544_M_471_jpg.rf.8d754c982fb229751520ae02b930943b.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
+  }
+]

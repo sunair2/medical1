@@ -1,0 +1,21 @@
+2025-07-01 11:03:27,027 - default - INFO - 日志记录器已启动，日志文件保存路径为:C:\Users\14854\Desktop\BTD\yoloserver\logs\infer\infer_20250701-110327_train2_20250626-164018_yolo11m-seg_best.log
+2025-07-01 11:03:27,028 - default - INFO - 日志记录器的根目录：              C:\Users\14854\Desktop\BTD\yoloserver\logs
+2025-07-01 11:03:27,028 - default - INFO - 日志记录器的名称:                default
+2025-07-01 11:03:27,028 - default - INFO - 日志记录器的类型:                infer
+2025-07-01 11:03:27,028 - default - INFO - 日志记录器的级别：               INFO
+2025-07-01 11:03:27,028 - default - INFO - ============================相关设备============================
+2025-07-01 11:03:27,028 - default - INFO - 操作系统: Windows 11 (10.0.26100)
+2025-07-01 11:03:27,028 - default - INFO - Python版本: 3.12.11
+2025-07-01 11:03:27,029 - default - INFO - 处理器: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+2025-07-01 11:03:27,029 - default - INFO - CPU核心数: 16
+2025-07-01 11:03:28,030 - default - INFO - CPU占用率: 14.6%
+2025-07-01 11:03:28,033 - default - INFO - 内存占用: 8.01 GB / 15.63 GB (51.2%)
+2025-07-01 11:03:28,034 - default - INFO - ============================GPU=============================
+2025-07-01 11:03:28,034 - default - INFO - PyTorch版本: 2.7.1+cu126
+2025-07-01 11:03:28,034 - default - INFO - CUDA版本: 12.6
+2025-07-01 11:03:28,034 - default - INFO - cuDNN版本: 90701
+2025-07-01 11:03:28,034 - default - INFO - GPU可用: 是
+2025-07-01 11:03:28,037 - default - INFO - GPU名称: NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 11:03:28,038 - default - INFO - 已分配显存: 0.0 GB, 已保留显存: 0.0 GB, 总显存: 4.0 GB
+2025-07-01 11:03:28,038 - default - INFO - =========================日志记录器初始化成功=========================
+2025-07-01 11:03:28,045 - default - ERROR - 模型文件 'C:\Users\Matri\Desktop\BTD\yoloserver\models\checkpoints\train2_20250626-164018_yolo11m-seg_best.pt' 不存在

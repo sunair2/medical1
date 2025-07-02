@@ -1,0 +1,6 @@
+path: C:\Users\14854\Desktop\BTD\yoloserver\data
+train: C:\Users\14854\Desktop\BTD\yoloserver\data\train\images
+val: C:\Users\14854\Desktop\BTD\yoloserver\data\val\images
+test: C:\Users\14854\Desktop\BTD\yoloserver\data\test\images
+nc: 3
+names: [glioma_tumor, meningioma_tumor, pituitary_tumor]

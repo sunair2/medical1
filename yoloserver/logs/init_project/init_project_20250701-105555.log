@@ -1,0 +1,63 @@
+2025-07-01 10:55:55,739 - YOLO Initialize Project - INFO - 日志记录器已启动，日志文件保存路径为:C:\Users\14854\Desktop\BTD\yoloserver\logs\init_project\init_project_20250701-105555.log
+2025-07-01 10:55:55,739 - YOLO Initialize Project - INFO - 日志记录器的根目录：              C:\Users\14854\Desktop\BTD\yoloserver\logs
+2025-07-01 10:55:55,739 - YOLO Initialize Project - INFO - 日志记录器的名称:                YOLO Initialize Project
+2025-07-01 10:55:55,739 - YOLO Initialize Project - INFO - 日志记录器的类型:                init_project
+2025-07-01 10:55:55,739 - YOLO Initialize Project - INFO - 日志记录器的级别：               INFO
+2025-07-01 10:55:55,740 - YOLO Initialize Project - INFO - ============================相关设备============================
+2025-07-01 10:55:55,740 - YOLO Initialize Project - INFO - 操作系统: Windows 11 (10.0.26100)
+2025-07-01 10:55:55,740 - YOLO Initialize Project - INFO - Python版本: 3.12.11
+2025-07-01 10:55:55,757 - YOLO Initialize Project - INFO - 处理器: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+2025-07-01 10:55:55,757 - YOLO Initialize Project - INFO - CPU核心数: 16
+2025-07-01 10:55:56,759 - YOLO Initialize Project - INFO - CPU占用率: 3.8%
+2025-07-01 10:55:56,765 - YOLO Initialize Project - INFO - 内存占用: 11.77 GB / 15.63 GB (75.3%)
+2025-07-01 10:55:56,765 - YOLO Initialize Project - INFO - ============================GPU=============================
+2025-07-01 10:55:56,778 - YOLO Initialize Project - INFO - PyTorch版本: 2.7.1+cu126
+2025-07-01 10:55:56,778 - YOLO Initialize Project - INFO - CUDA版本: 12.6
+2025-07-01 10:55:56,778 - YOLO Initialize Project - INFO - cuDNN版本: 90701
+2025-07-01 10:55:56,778 - YOLO Initialize Project - INFO - GPU可用: 是
+2025-07-01 10:55:56,781 - YOLO Initialize Project - INFO - GPU名称: NVIDIA GeForce RTX 3050 Laptop GPU
+2025-07-01 10:55:56,781 - YOLO Initialize Project - INFO - 已分配显存: 0.0 GB, 已保留显存: 0.0 GB, 总显存: 4.0 GB
+2025-07-01 10:55:56,781 - YOLO Initialize Project - INFO - =========================日志记录器初始化成功=========================
+2025-07-01 10:55:56,781 - YOLO Initialize Project - INFO - ═════════════════════════初始化项目结构开始══════════════════════════
+2025-07-01 10:55:56,781 - YOLO Initialize Project - INFO - 当前项目的根目录为：C:\Users\14854\Desktop\BTD\yoloserver
+2025-07-01 10:55:56,783 - YOLO Initialize Project - INFO - ═══════════════════════检查并创建标准项目目录结构════════════════════════
+2025-07-01 10:55:56,783 - YOLO Initialize Project - INFO - 已成功创建项目目录：configs
+2025-07-01 10:55:56,783 - YOLO Initialize Project - INFO - 检测到目录已存在：data
+2025-07-01 10:55:56,784 - YOLO Initialize Project - INFO - 已成功创建项目目录：runs
+2025-07-01 10:55:56,784 - YOLO Initialize Project - INFO - 已成功创建项目目录：models
+2025-07-01 10:55:56,785 - YOLO Initialize Project - INFO - 已成功创建项目目录：models\checkpoints
+2025-07-01 10:55:56,785 - YOLO Initialize Project - INFO - 已成功创建项目目录：models\pretrained
+2025-07-01 10:55:56,786 - YOLO Initialize Project - INFO - 检测到目录已存在：logs
+2025-07-01 10:55:56,786 - YOLO Initialize Project - INFO - 检测到目录已存在：scripts
+2025-07-01 10:55:56,786 - YOLO Initialize Project - INFO - 已成功创建项目目录：data\train\images
+2025-07-01 10:55:56,787 - YOLO Initialize Project - INFO - 已成功创建项目目录：data\val\images
+2025-07-01 10:55:56,787 - YOLO Initialize Project - INFO - 已成功创建项目目录：data\test\images
+2025-07-01 10:55:56,788 - YOLO Initialize Project - INFO - 已成功创建项目目录：data\train\labels
+2025-07-01 10:55:56,788 - YOLO Initialize Project - INFO - 已成功创建项目目录：data\val\labels
+2025-07-01 10:55:56,788 - YOLO Initialize Project - INFO - 已成功创建项目目录：data\test\labels
+2025-07-01 10:55:56,789 - YOLO Initialize Project - INFO - ═══════════════════════标准数据集项目结构检查完成════════════════════════
+2025-07-01 10:55:56,789 - YOLO Initialize Project - INFO - ═══════════════════════检测原始数据集目录并给出提示═══════════════════════
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO - 原始图像 已经存在，data\raw\images 有内容存在
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO - 原始标注 已经存在，data\raw\original_annotations 有内容存在
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO - ═══════════════════════汇总初始化过程生成的相关信息═══════════════════════
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO - 一共创建了 11 个目录：
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO -  - configs
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO -  - runs
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO -  - models
+2025-07-01 10:55:56,790 - YOLO Initialize Project - INFO -  - models\checkpoints
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - models\pretrained
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\train\images
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\val\images
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\test\images
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\train\labels
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\val\labels
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\test\labels
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO - 检测到已有目录共 3 个 已经存在的目录有：
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - logs
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - scripts
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO - ════════════════════════原始数据目录检查结果如下════════════════════════
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\raw\images 已存在
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO -  - data\raw\original_annotations 已存在
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO - ═════════════════════════原始数据目录检查结束═════════════════════════
+2025-07-01 10:55:56,791 - YOLO Initialize Project - INFO - 性能测试：'项目初始化' 执行耗时: 8.865 毫秒
