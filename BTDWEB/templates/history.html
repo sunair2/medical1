@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测历史记录 - YOLO肿瘤检测和AI分析系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-bar {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav-bar a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-bar a:hover {
+            background: #e3f2fd;
+            color: #2980b9;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .history-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .history-list th, .history-list td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .history-list th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .history-list tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .history-list tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #3498db;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px 0;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-pdf {
+            background: #e74c3c;
+        }
+        
+        .btn-pdf:hover {
+            background: #c0392b;
+        }
+        
+        .btn-detail {
+            background: #2ecc71;
+        }
+        
+        .btn-detail:hover {
+            background: #27ae60;
+        }
+        
+        .empty-message {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .error-message {
+            padding: 20px;
+            margin: 20px 0;
+            background: #ffeceb;
+            border-left: 5px solid #e74c3c;
+            color: #c0392b;
+            border-radius: 5px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .pagination a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            background: #f8f9fa;
+            color: #3498db;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover {
+            background: #e3f2fd;
+        }
+        
+        .pagination a.active {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 检测历史记录</h1>
+            <p>浏览过去的YOLO肿瘤检测和AI分析结果</p>
+        </div>
+        
+        <div class="nav-bar">
+            <a href="/">← 返回首页</a>
+            <div>
+                <a href="/history">🔄 刷新历史记录</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            {% if records and records|length > 0 %}
+                <table class="history-list">
+                    <thead>
+                        <tr>
+                            <th>检测时间</th>
+                            <th>图像</th>
+                            <th>检测结果</th>
+                            <th>医生署名</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td>{{ record.formatted_time }}</td>
+                                <td>
+                                    {% if record.image_path %}
+                                        <img src="{{ url_for('static', filename=record.image_path) }}" class="thumbnail" alt="检测图像">
+                                    {% else %}
+                                        <span>图像不可用</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if record.detections_count > 0 %}
+                                        检测到 {{ record.detections_count }} 个对象
+                                        {% if record.high_confidence_warnings and record.high_confidence_warnings|length > 0 %}
+                                            <div style="color: #e74c3c; font-weight: bold; margin-top: 5px;">
+                                                ⚠️ 包含高置信度警告
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        未检测到任何对象
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if record.detections and record.detections|length > 0 and record.detections[0] != "未检测到任何对象" %}
+                                        <ul style="list-style: none; padding: 0; margin: 0;">
+                                            {% for detection in record.detections %}
+                                                <li style="margin-bottom: 4px;">{{ detection }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% if record.high_confidence_warnings and record.high_confidence_warnings|length > 0 %}
+                                            <div style="color: #e74c3c; font-weight: bold; margin-top: 5px;">
+                                                ⚠️ 包含高置信度警告
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        未检测到任何对象
+                                    {% endif %}
+                                </td>
+                                <td>{{ record.doctor_name or '未记录' }}</td>
+                                <td>
+                                    <a href="{{ url_for('history_detail', report_id=record.report_id) }}" class="btn btn-detail">查看详情</a>
+                                    {% if record.pdf_path %}
+                                        <a href="{{ url_for('download_history_pdf', filename=record.pdf_filename) }}" class="btn btn-pdf">下载PDF</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <!-- 分页控件（如果记录数量多，可以启用） -->
+                <!--
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+                -->
+            {% else %}
+                <div class="empty-message">
+                    <h3>暂无历史记录</h3>
+                    <p>当您使用系统进行检测时，记录将显示在这里</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测记录详情 - YOLO肿瘤检测和AI分析系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-bar {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav-bar a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-bar a:hover {
+            background: #e3f2fd;
+            color: #2980b9;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .detail-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .info-table {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .info-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #7f8c8d;
+            width: 25%;
+            vertical-align: top;
+        }
+        
+        .info-value {
+            color: #2c3e50;
+        }
+        
+        .detection-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .detection-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .detection-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .result-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .ai-analysis {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 4px solid #3498db;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ai-analysis h4 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ai-analysis-content {
+            line-height: 1.8;
+            color: #34495e;
+            white-space: pre-wrap;
+            font-size: 1em;
+        }
+        
+        .warning-section {
+            background: #ffeceb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .warning-list {
+            list-style: none;
+        }
+        
+        .warning-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fadbd8;
+            border-radius: 8px;
+            color: #c0392b;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-left: 3px solid #e74c3c;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-item:before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-pdf {
+            background: #e74c3c;
+        }
+        
+        .btn-pdf:hover {
+            background: #c0392b;
+        }
+        
+        .btn-back {
+            background: #7f8c8d;
+        }
+        
+        .btn-back:hover {
+            background: #95a5a6;
+        }
+        
+        .action-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .error-message {
+            padding: 20px;
+            margin: 20px 0;
+            background: #ffeceb;
+            border-left: 5px solid #e74c3c;
+            color: #c0392b;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 检测记录详情</h1>
+            <p>查看完整的YOLO肿瘤检测和AI分析结果</p>
+        </div>
+        
+        <div class="nav-bar">
+            <a href="/history">← 返回历史记录</a>
+            <a href="/">首页</a>
+        </div>
+        
+        <div class="main-content">
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% elif record %}
+                <!-- 基本信息部分 -->
+                <div class="detail-section">
+                    <h3 class="section-title">📋 基本信息</h3>
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">检测时间</td>
+                            <td class="info-value">{{ record.formatted_time }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">报告编号</td>
+                            <td class="info-value">{{ record.report_id }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">医生署名</td>
+                            <td class="info-value">{{ record.doctor_name or '未记录' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">检测模型</td>
+                            <td class="info-value">{{ record.model_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">图像文件名</td>
+                            <td class="info-value">{{ record.image_filename }}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- 检测结果部分 -->
+                <div class="detail-section">
+                    <h3 class="section-title">🎯 检测结果</h3>
+                    
+                    {% if record.high_confidence_warnings and record.high_confidence_warnings|length > 0 %}
+                        <div class="warning-section">
+                            <h4 style="color: #e74c3c; margin-bottom: 15px;">⚠️ 高置信度警告：</h4>
+                            <div class="warning-list">
+                                {% for warning in record.high_confidence_warnings %}
+                                    <div class="warning-item">{{ warning }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    {% if record.detections and record.detections|length > 0 %}
+                        <h4 style="color: #2c3e50; margin: 20px 0 15px 0;">检测结果详情：</h4>
+                        <ul class="detection-list">
+                            {% for item in record.detections %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p style="color: #7f8c8d; font-style: italic; text-align: center; padding: 20px;">未检测到任何对象</p>
+                    {% endif %}
+                    
+                    <!-- 检测图像 -->
+                    {% if record.image_path %}
+                        <div style="text-align: center;">
+                            <h4 style="color: #2c3e50; margin: 20px 0 15px 0;">📷 检测图像：</h4>
+                            <img src="{{ url_for('static', filename=record.image_path) }}" class="result-image" alt="检测结果图像">
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- AI分析部分 -->
+                {% if record.ai_analysis %}
+                    <div class="detail-section">
+                        <h3 class="section-title">🤖 AI智能分析</h3>
+                        <div class="ai-analysis">
+                            <h4>AI智能分析报告：</h4>
+                            <div class="ai-analysis-content">{{ record.ai_analysis }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <a href="/history" class="btn btn-back">返回历史记录</a>
+                    {% if record.pdf_path %}
+                        <a href="{{ url_for('download_history_pdf', filename=record.pdf_filename) }}" class="btn btn-pdf">下载PDF报告</a>
+                    {% endif %}
+                </div>
+                
+            {% else %}
+                <div class="error-message">未找到记录或记录已被删除</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> 

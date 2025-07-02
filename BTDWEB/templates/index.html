@@ -332,6 +332,15 @@
             <p>基于深度学习的智能医学影像分析平台</p>
         </div>
         
+        <div class="nav-bar" style="background: #f8f9fa; padding: 15px 30px; display: flex; justify-content: flex-end; border-bottom: 1px solid #e9ecef;">
+            <a href="/history" style="color: #3498db; text-decoration: none; font-weight: 500; padding: 8px 15px; border-radius: 20px; transition: all 0.3s ease; margin-right: 10px;">
+                📋 查看历史记录
+            </a>
+            <a href="/" style="color: #3498db; text-decoration: none; font-weight: 500; padding: 8px 15px; border-radius: 20px; transition: all 0.3s ease;">
+                🔄 刷新页面
+            </a>
+        </div>
+        
         <div class="main-content">
             <form method="POST" enctype="multipart/form-data">
                 <div class="upload-section">
@@ -406,6 +415,8 @@
                     <h3 class="result-title">📊 {{ prediction }}</h3>
                     <!-- 隐藏字段存储医生姓名，用于PDF下载 -->
                     <input type="hidden" id="hidden_doctor_name" value="{{ request.form.get('doctor_name', '') }}">
+                    <!-- 隐藏字段存储PDF文件名 -->
+                    <input type="hidden" id="pdf_filename_hidden" value="{{ pdf_filename }}">
                     <div class="detection-results">
                         <h4 style="color: #2c3e50; margin-bottom: 15px;">🎯 检测结果详情：</h4>
                         <ul class="detection-list">
@@ -516,6 +527,10 @@
                         highConfidenceWarnings.push(item.textContent.trim());
                     });
                     
+                    // 获取PDF文件名（如果服务器已提供）
+                    const pdfFilename = document.getElementById('pdf_filename_hidden') ? 
+                                      document.getElementById('pdf_filename_hidden').value : '';
+                    
                     // 从页面获取图像文件名
                     const imageElement = document.querySelector('.result-image');
                     const imagePath = imageElement ? imageElement.src : '';
@@ -539,12 +554,7 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            detections: detections,
-                            ai_analysis: aiAnalysis,
-                            image_filename: imageFilename,
-                            model_name: modelName,
-                            doctor_name: doctorName,
-                            high_confidence_warnings: highConfidenceWarnings
+                            pdf_filename: pdfFilename
                         })
                     })
                     .then(response => {

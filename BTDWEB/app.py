@@ -341,34 +341,6 @@ def generate_pdf_report(detections, ai_analysis, image_filename, model_name, ori
         # 构建PDF
         doc.build(story)
         
-        # 记录日志
-        log_entry = {
-            'timestamp': timestamp.isoformat(),
-            'report_id': report_id,
-            'pdf_filename': pdf_filename,
-            'image_filename': image_filename,
-            'model_name': model_name,
-            'detections_count': len(detections) if detections and detections[0] != "未检测到任何对象" else 0
-        }
-        
-        log_filename = f"report_log_{timestamp.strftime('%Y%m%d')}.json"
-        log_path = os.path.join(LOGS_FOLDER, log_filename)
-        
-        # 读取现有日志或创建新的
-        logs = []
-        if os.path.exists(log_path):
-            try:
-                with open(log_path, 'r', encoding='utf-8') as f:
-                    logs = json.load(f)
-            except:
-                logs = []
-        
-        logs.append(log_entry)
-        
-        # 写入日志
-        with open(log_path, 'w', encoding='utf-8') as f:
-            json.dump(logs, f, ensure_ascii=False, indent=2)
-        
         return pdf_path, pdf_filename
         
     except Exception as e:
@@ -484,16 +456,79 @@ def upload_detect():
             except:
                 pass
 
+            # 自动生成PDF文件，不等待用户点击下载
+            model_name = model_file.filename.rsplit('.', 1)[0] if '.' in model_file.filename else model_file.filename
+            original_image_path = os.path.join(app.config["UPLOAD_FOLDER"], img_filename)
+            processed_image_path = os.path.join(app.config["DETECT_FOLDER"], img_filename)
+            
+            # 生成PDF
+            pdf_path, pdf_filename = generate_pdf_report(
+                detections, 
+                ai_analysis, 
+                img_filename, 
+                model_name,
+                original_image_path,
+                processed_image_path,
+                doctor_name,
+                high_confidence_warnings=high_confidence_warnings
+            )
+
             # 保存分析结果到session，用于PDF下载
             session['last_analysis'] = {
                 'detections': detections,
                 'ai_analysis': ai_analysis,
                 'image_filename': img_filename,
-                'model_name': model_file.filename.rsplit('.', 1)[0] if '.' in model_file.filename else model_file.filename,
+                'model_name': model_name,
                 'timestamp': datetime.now().isoformat(),
                 'doctor_name': doctor_name,
-                'high_confidence_warnings': high_confidence_warnings  # 添加高置信度警告
+                'high_confidence_warnings': high_confidence_warnings,  # 添加高置信度警告
+                'pdf_filename': pdf_filename if pdf_path else None  # 添加PDF文件名
             }
+            
+            # 立即记录到日志文件，包含PDF信息
+            try:
+                # 生成报告编号和时间戳
+                now_timestamp = datetime.now()
+                report_id = now_timestamp.strftime("%Y%m%d%H%M%S")
+                
+                # 准备日志条目
+                log_entry = {
+                    'timestamp': now_timestamp.isoformat(),
+                    'report_id': report_id,
+                    'image_filename': img_filename,
+                    'model_name': model_name,
+                    'detections_count': len(detections) if detections and detections[0] != "未检测到任何对象" else 0,
+                    'detections': detections,
+                    'ai_analysis': ai_analysis,
+                    'doctor_name': doctor_name,
+                    'high_confidence_warnings': high_confidence_warnings if high_confidence_warnings else [],
+                    'pdf_filename': pdf_filename if pdf_path else None  # 添加PDF文件名
+                }
+                
+                # 添加图片路径信息
+                log_entry['image_path'] = f"detections/{img_filename}"
+                
+                # 读取现有日志或创建新的
+                log_filename = f"report_log_{now_timestamp.strftime('%Y%m%d')}.json"
+                log_path = os.path.join(LOGS_FOLDER, log_filename)
+                
+                logs = []
+                if os.path.exists(log_path):
+                    try:
+                        with open(log_path, 'r', encoding='utf-8') as f:
+                            logs = json.load(f)
+                    except:
+                        logs = []
+                
+                logs.append(log_entry)
+                
+                # 写入日志
+                with open(log_path, 'w', encoding='utf-8') as f:
+                    json.dump(logs, f, ensure_ascii=False, indent=2)
+                    
+                print(f"检测记录已保存到日志: {report_id}")
+            except Exception as log_error:
+                print(f"保存检测记录到日志失败: {str(log_error)}")
 
             return render_template(
                 'index.html',
@@ -501,8 +536,9 @@ def upload_detect():
                 detections=detections,
                 ai_analysis=ai_analysis,
                 image_path=f"detections/{img_filename}",
-                show_download_btn=True,
-                high_confidence_warnings=high_confidence_warnings  # 传递高置信度警告到模板
+                show_download_btn=True if pdf_path else False,
+                high_confidence_warnings=high_confidence_warnings,  # 传递高置信度警告到模板
+                pdf_filename=pdf_filename if pdf_path else None  # 传递PDF文件名
             )
 
         except Exception as e:
@@ -531,29 +567,19 @@ def download_pdf():
     """
     try:
         data = request.get_json()
-        detections = data.get('detections', [])
-        ai_analysis = data.get('ai_analysis', '')
-        image_filename = data.get('image_filename', '')
-        model_name = data.get('model_name', 'unknown_model')
-        doctor_name = data.get('doctor_name', '')
-        high_confidence_warnings = data.get('high_confidence_warnings', [])
+        pdf_filename = data.get('pdf_filename', '')
         
-        # 构建图片路径
-        original_image_path = os.path.join(UPLOAD_FOLDER, image_filename) if image_filename else None
-        processed_image_path = os.path.join(DETECT_FOLDER, image_filename) if image_filename else None
+        if not pdf_filename:
+            # 如果没有传入PDF文件名，尝试从session获取
+            if 'last_analysis' in session and 'pdf_filename' in session['last_analysis']:
+                pdf_filename = session['last_analysis']['pdf_filename']
+            else:
+                return jsonify({'error': '无法获取PDF文件名'}), 400
         
-        # 生成PDF
-        pdf_path, pdf_filename = generate_pdf_report(
-            detections, 
-            ai_analysis, 
-            image_filename, 
-            model_name,
-            original_image_path,
-            processed_image_path,
-            doctor_name,
-            high_confidence_warnings=high_confidence_warnings
-        )
+        # 构建PDF文件路径
+        pdf_path = os.path.join(REPORTS_PDF_FOLDER, pdf_filename)
         
+        # 检查PDF文件是否存在
         if pdf_path and os.path.exists(pdf_path):
             return send_file(
                 pdf_path,
@@ -562,7 +588,191 @@ def download_pdf():
                 mimetype='application/pdf'
             )
         else:
-            return jsonify({'error': 'PDF生成失败'}), 500
+            return jsonify({'error': 'PDF文件不存在或已被删除'}), 404
+            
+    except Exception as e:
+        return jsonify({'error': f'下载失败: {str(e)}'}), 500
+
+
+@app.route('/history')
+def view_history():
+    """
+    查看检测历史记录
+    """
+    try:
+        # 获取所有历史记录文件
+        history_files = []
+        for filename in os.listdir(LOGS_FOLDER):
+            if filename.startswith('report_log_') and filename.endswith('.json'):
+                history_files.append(filename)
+        
+        # 按日期排序（最新的在前）
+        history_files.sort(reverse=True)
+        print(f"找到历史记录文件: {history_files}")
+        
+        # 读取所有历史记录
+        all_records = []
+        for log_file in history_files:
+            log_path = os.path.join(LOGS_FOLDER, log_file)
+            try:
+                with open(log_path, 'r', encoding='utf-8') as f:
+                    logs = json.load(f)
+                    print(f"从 {log_file} 读取到 {len(logs)} 条记录")
+                    for log in logs:
+                        # 添加文件路径信息便于访问
+                        if 'image_filename' in log:
+                            log['image_path'] = f"detections/{log['image_filename']}"
+                        else:
+                            print(f"警告: 记录缺少 image_filename 字段: {log.get('report_id', '未知ID')}")
+                        
+                        # 如果有PDF文件名，构建PDF路径
+                        if 'pdf_filename' in log:
+                            pdf_rel_path = os.path.join('reports_pdf', log['pdf_filename'])
+                            if os.path.exists(os.path.join(os.path.dirname(__file__), pdf_rel_path)):
+                                log['pdf_path'] = pdf_rel_path
+                        
+                        # 格式化时间为易读格式
+                        if 'timestamp' in log:
+                            try:
+                                # 解析ISO格式时间戳
+                                dt = datetime.fromisoformat(log['timestamp'])
+                                log['formatted_time'] = dt.strftime("%Y-%m-%d %H:%M:%S")
+                            except Exception as e:
+                                print(f"时间格式化错误: {e}")
+                                log['formatted_time'] = log['timestamp']
+                        else:
+                            print(f"警告: 记录缺少 timestamp 字段: {log.get('report_id', '未知ID')}")
+                        
+                        # 检查医生署名
+                        if 'doctor_name' not in log or not log['doctor_name']:
+                            print(f"警告: 记录缺少医生署名: {log.get('report_id', '未知ID')}")
+                        
+                        # 检查检测结果
+                        if 'detections' not in log:
+                            print(f"警告: 记录缺少检测结果: {log.get('report_id', '未知ID')}")
+                        
+                        all_records.append(log)
+            except Exception as e:
+                print(f"读取日志文件 {log_file} 失败: {str(e)}")
+        
+        # 按时间排序，最新的在前
+        all_records.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
+        print(f"总共读取到 {len(all_records)} 条历史记录")
+        
+        # 过滤掉没有PDF的重复记录
+        filtered_records = []
+        image_filenames_with_pdf = set()  # 记录已有PDF的图像文件名
+        
+        # 首先添加所有有PDF的记录
+        for record in all_records:
+            if 'pdf_path' in record and record.get('image_filename'):
+                filtered_records.append(record)
+                image_filenames_with_pdf.add(record.get('image_filename'))
+        
+        # 然后添加没有与之重复的无PDF记录
+        for record in all_records:
+            if 'pdf_path' not in record and record.get('image_filename') and record.get('image_filename') not in image_filenames_with_pdf:
+                filtered_records.append(record)
+        
+        # 重新按时间排序
+        filtered_records.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
+        print(f"过滤后保留 {len(filtered_records)} 条历史记录")
+        
+        return render_template('history.html', records=filtered_records)
+    
+    except Exception as e:
+        print(f"查看历史记录失败: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return render_template('history.html', records=[], error=f"加载历史记录失败: {str(e)}")
+
+
+@app.route('/history/detail/<report_id>')
+def history_detail(report_id):
+    """
+    查看单个历史记录的详细信息
+    """
+    try:
+        print(f"正在查找历史记录: {report_id}")
+        found_record = None
+        
+        # 查找对应的记录
+        for filename in os.listdir(LOGS_FOLDER):
+            if filename.startswith('report_log_') and filename.endswith('.json'):
+                log_path = os.path.join(LOGS_FOLDER, filename)
+                try:
+                    with open(log_path, 'r', encoding='utf-8') as f:
+                        logs = json.load(f)
+                        for log in logs:
+                            if log.get('report_id') == report_id:
+                                print(f"在文件 {filename} 中找到记录 {report_id}")
+                                found_record = log
+                                
+                                # 添加文件路径信息便于访问
+                                if 'image_filename' in log:
+                                    log['image_path'] = f"detections/{log['image_filename']}"
+                                
+                                # 如果有PDF文件名，构建PDF路径
+                                if 'pdf_filename' in log:
+                                    pdf_rel_path = os.path.join('reports_pdf', log['pdf_filename'])
+                                    if os.path.exists(os.path.join(os.path.dirname(__file__), pdf_rel_path)):
+                                        log['pdf_path'] = pdf_rel_path
+                                        print(f"PDF文件存在: {pdf_rel_path}")
+                                    else:
+                                        print(f"PDF文件不存在: {pdf_rel_path}")
+                                else:
+                                    print(f"记录没有PDF文件名字段")
+                                
+                                # 格式化时间为易读格式
+                                if 'timestamp' in log:
+                                    try:
+                                        # 解析ISO格式时间戳
+                                        dt = datetime.fromisoformat(log['timestamp'])
+                                        log['formatted_time'] = dt.strftime("%Y-%m-%d %H:%M:%S")
+                                    except:
+                                        log['formatted_time'] = log['timestamp']
+                                
+                                # 检查记录中的关键字段
+                                if 'detections' not in log or not log['detections']:
+                                    print(f"警告: 记录缺少检测结果")
+                                if 'doctor_name' not in log or not log['doctor_name']:
+                                    print(f"警告: 记录缺少医生署名")
+                                if 'ai_analysis' not in log:
+                                    print(f"警告: 记录缺少AI分析结果")
+                                
+                                return render_template('history_detail.html', record=log)
+                except Exception as e:
+                    print(f"读取日志文件 {filename} 出错: {str(e)}")
+                    continue
+        
+        if not found_record:
+            print(f"未找到记录 {report_id}")
+        
+        return render_template('history_detail.html', record=None, error="未找到指定的历史记录")
+    
+    except Exception as e:
+        print(f"查看历史记录详情失败: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return render_template('history_detail.html', record=None, error=f"加载历史记录失败: {str(e)}")
+
+
+@app.route('/download_history_pdf/<filename>')
+def download_history_pdf(filename):
+    """
+    下载历史记录中的PDF文件
+    """
+    try:
+        pdf_path = os.path.join(REPORTS_PDF_FOLDER, filename)
+        if os.path.exists(pdf_path):
+            return send_file(
+                pdf_path,
+                as_attachment=True,
+                download_name=filename,
+                mimetype='application/pdf'
+            )
+        else:
+            return jsonify({'error': '文件不存在'}), 404
             
     except Exception as e:
         return jsonify({'error': f'下载失败: {str(e)}'}), 500
