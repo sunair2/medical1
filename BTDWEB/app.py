@@ -122,7 +122,7 @@ def analyze_detection_results(detections, image_filename):
         return f"AI分析过程中发生错误：{str(e)}"
 
 
-def generate_pdf_report(detections, ai_analysis, image_filename, model_name, original_image_path=None, processed_image_path=None, doctor_name=None):
+def generate_pdf_report(detections, ai_analysis, image_filename, model_name, original_image_path=None, processed_image_path=None, doctor_name=None, high_confidence_warnings=None):
     """
     生成PDF报告，支持中文字体和图片展示
     """
@@ -178,6 +178,19 @@ def generate_pdf_report(detections, ai_analysis, image_filename, model_name, ori
             fontName=chinese_font
         )
         
+        warning_style = ParagraphStyle(
+            'WarningStyle',
+            parent=styles['Normal'],
+            fontSize=11,
+            fontName=chinese_font,
+            textColor=colors.red,
+            borderColor=colors.red,
+            borderWidth=1,
+            borderPadding=5,
+            backColor=colors.pink,
+            borderRadius=5
+        )
+        
         # 添加标题
         title = Paragraph("YOLO肿瘤检测与AI分析报告", title_style)
         story.append(title)
@@ -209,6 +222,22 @@ def generate_pdf_report(detections, ai_analysis, image_filename, model_name, ori
         
         story.append(basic_info_table)
         story.append(Spacer(1, 30))
+        
+        # 添加高置信度警告（如果有）
+        if high_confidence_warnings and len(high_confidence_warnings) > 0:
+            warning_heading = Paragraph("⚠️ 高置信度警告", ParagraphStyle(
+                'WarningHeading',
+                parent=heading_style,
+                textColor=colors.red
+            ))
+            story.append(warning_heading)
+            
+            for warning in high_confidence_warnings:
+                warning_para = Paragraph(warning, warning_style)
+                story.append(warning_para)
+                story.append(Spacer(1, 6))
+            
+            story.append(Spacer(1, 20))
         
         # 添加检测结果
         detection_heading = Paragraph("检测结果详情", heading_style)
@@ -424,12 +453,19 @@ def upload_detect():
 
             # 提取检测框信息（标签 + 置信度）
             detections = []
+            high_confidence_warnings = []  # 存储高置信度警告
             boxes = results[0].boxes
             if boxes is not None and boxes.cls.numel() > 0:
                 for cls_id, conf in zip(boxes.cls, boxes.conf):
                     class_name = model.names[int(cls_id)]
                     confidence = round(float(conf) * 100, 2)
-                    detections.append(f"{class_name}: {confidence}%")
+                    detection_text = f"{class_name}: {confidence}%"
+                    detections.append(detection_text)
+                    
+                    # 添加高置信度警告 (>90%)
+                    if confidence > 90:
+                        warning_text = f"警告：检测到置信度高达{confidence}%的{class_name}，建议立即进行进一步诊断与干预！"
+                        high_confidence_warnings.append(warning_text)
             else:
                 detections.append("未检测到任何对象")
 
@@ -455,7 +491,8 @@ def upload_detect():
                 'image_filename': img_filename,
                 'model_name': model_file.filename.rsplit('.', 1)[0] if '.' in model_file.filename else model_file.filename,
                 'timestamp': datetime.now().isoformat(),
-                'doctor_name': doctor_name
+                'doctor_name': doctor_name,
+                'high_confidence_warnings': high_confidence_warnings  # 添加高置信度警告
             }
 
             return render_template(
@@ -464,7 +501,8 @@ def upload_detect():
                 detections=detections,
                 ai_analysis=ai_analysis,
                 image_path=f"detections/{img_filename}",
-                show_download_btn=True
+                show_download_btn=True,
+                high_confidence_warnings=high_confidence_warnings  # 传递高置信度警告到模板
             )
 
         except Exception as e:
@@ -498,6 +536,7 @@ def download_pdf():
         image_filename = data.get('image_filename', '')
         model_name = data.get('model_name', 'unknown_model')
         doctor_name = data.get('doctor_name', '')
+        high_confidence_warnings = data.get('high_confidence_warnings', [])
         
         # 构建图片路径
         original_image_path = os.path.join(UPLOAD_FOLDER, image_filename) if image_filename else None
@@ -511,7 +550,8 @@ def download_pdf():
             model_name,
             original_image_path,
             processed_image_path,
-            doctor_name
+            doctor_name,
+            high_confidence_warnings=high_confidence_warnings
         )
         
         if pdf_path and os.path.exists(pdf_path):

@@ -22,5 +22,29 @@
     "image_filename": "20250702100414_G_316_jpg.rf.7359cfbae3847965f975114baff1ae4d.jpg",
     "model_name": "yolo_model",
     "detections_count": 2
+  },
+  {
+    "timestamp": "2025-07-02T10:10:07.091050",
+    "report_id": "20250702101007",
+    "pdf_filename": "yolo_model-20250702_101007-20250702101007.pdf",
+    "image_filename": "20250702100936_G_816_jpg.rf.3e5f35778aa19199a613a9f5fb23467c.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
+  },
+  {
+    "timestamp": "2025-07-02T10:17:01.372600",
+    "report_id": "20250702101701",
+    "pdf_filename": "yolo_model-20250702_101701-20250702101701.pdf",
+    "image_filename": "20250702101611_M_304_jpg.rf.5b8ac98549982bf8106592372497dd30.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
+  },
+  {
+    "timestamp": "2025-07-02T10:21:05.335499",
+    "report_id": "20250702102105",
+    "pdf_filename": "yolo_model-20250702_102105-20250702102105.pdf",
+    "image_filename": "20250702102027_M_34_jpg.rf.93695e62dc2cf17f0058a7b45f87a2bc.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
   }
 ]

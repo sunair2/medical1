@@ -278,6 +278,38 @@
             box-shadow: none;
         }
         
+        .warning-section {
+            background: #ffeceb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .warning-list {
+            list-style: none;
+        }
+        
+        .warning-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fadbd8;
+            border-radius: 8px;
+            color: #c0392b;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-left: 3px solid #e74c3c;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-item:before {
+            content: "⚠️";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
         @media (max-width: 768px) {
             .main-content {
                 padding: 20px;
@@ -383,6 +415,17 @@
                         </ul>
                     </div>
                     
+                    {% if high_confidence_warnings and high_confidence_warnings|length > 0 %}
+                    <div class="warning-section">
+                        <h4 style="color: #e74c3c; margin: 20px 0 15px 0;">⚠️ 高置信度警告：</h4>
+                        <div class="warning-list">
+                            {% for warning in high_confidence_warnings %}
+                                <div class="warning-item">{{ warning }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
                     {% if ai_analysis %}
                         <div class="ai-analysis">
                             <h4>🤖 AI智能分析报告：</h4>
@@ -467,6 +510,12 @@
                     const aiAnalysisElement = document.querySelector('.ai-analysis-content');
                     const aiAnalysis = aiAnalysisElement ? aiAnalysisElement.textContent.trim() : '';
                     
+                    // 收集高置信度警告信息
+                    const highConfidenceWarnings = [];
+                    document.querySelectorAll('.warning-item').forEach(item => {
+                        highConfidenceWarnings.push(item.textContent.trim());
+                    });
+                    
                     // 从页面获取图像文件名
                     const imageElement = document.querySelector('.result-image');
                     const imagePath = imageElement ? imageElement.src : '';
@@ -494,7 +543,8 @@
                             ai_analysis: aiAnalysis,
                             image_filename: imageFilename,
                             model_name: modelName,
-                            doctor_name: doctorName
+                            doctor_name: doctorName,
+                            high_confidence_warnings: highConfidenceWarnings
                         })
                     })
                     .then(response => {
