@@ -219,7 +219,8 @@
                         <tr>
                             <th>检测时间</th>
                             <th>图像</th>
-                            <th>检测结果</th>
+                            <th>检测数量</th>
+                            <th>检测结果详情</th>
                             <th>医生署名</th>
                             <th>操作</th>
                         </tr>
@@ -254,11 +255,6 @@
                                                 <li style="margin-bottom: 4px;">{{ detection }}</li>
                                             {% endfor %}
                                         </ul>
-                                        {% if record.high_confidence_warnings and record.high_confidence_warnings|length > 0 %}
-                                            <div style="color: #e74c3c; font-weight: bold; margin-top: 5px;">
-                                                ⚠️ 包含高置信度警告
-                                            </div>
-                                        {% endif %}
                                     {% else %}
                                         未检测到任何对象
                                     {% endif %}
