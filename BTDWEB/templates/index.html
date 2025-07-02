@@ -27,22 +27,107 @@
             overflow: hidden;
         }
         
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        /* 新的导航栏样式 */
+        .navbar {
+            background-color: #1a5276;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+        }
+        
+        .navbar-brand img {
+            height: 38px;
+            margin-right: 15px;
+        }
+        
+        .navbar-brand-text {
             color: white;
-            padding: 40px 30px;
-            text-align: center;
+            font-size: 1.5em;
+            font-weight: 700;
         }
         
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        .navbar-nav {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
         
-        .header p {
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            padding: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-link.active {
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .nav-icon {
+            margin-right: 10px;
             font-size: 1.2em;
+        }
+        
+        /* 新的头部横幅样式 */
+        .hero-banner {
+            background: linear-gradient(135deg, #2874A6 0%, #148F77 100%);
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.icons8.com/doodle/96/000000/medical-doctor.png');
+            background-repeat: repeat;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3em;
             opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
         .main-content {
@@ -59,8 +144,8 @@
         }
         
         .upload-section:hover {
-            border-color: #3498db;
-            background: #f1f8ff;
+            border-color: #2E86C1;
+            background: #EBF5FB;
         }
         
         .form-group {
@@ -102,8 +187,8 @@
         }
         
         .file-input-display:hover {
-            border-color: #3498db;
-            background: #f8f9fa;
+            border-color: #2E86C1;
+            background: #EBF5FB;
         }
         
         .file-icon {
@@ -128,7 +213,7 @@
         .submit-btn {
             width: 100%;
             padding: 18px 30px;
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            background: linear-gradient(135deg, #1E8449 0%, #27AE60 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -136,12 +221,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
         }
         
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+            background: linear-gradient(135deg, #196F3D 0%, #229954 100%);
         }
         
         .submit-btn:active {
@@ -187,8 +273,8 @@
         }
         
         .ai-analysis {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-left: 4px solid #3498db;
+            background: linear-gradient(135deg, #EBF5FB 0%, #D6EAF8 100%);
+            border-left: 4px solid #2E86C1;
             padding: 25px;
             border-radius: 10px;
             margin: 25px 0;
@@ -196,7 +282,7 @@
         }
         
         .ai-analysis h4 {
-            color: #2c3e50;
+            color: #1A5276;
             font-size: 1.3em;
             margin-bottom: 15px;
             display: flex;
@@ -205,7 +291,7 @@
         
         .ai-analysis-content {
             line-height: 1.8;
-            color: #34495e;
+            color: #2C3E50;
             white-space: pre-wrap;
             font-size: 1em;
         }
@@ -239,13 +325,13 @@
             margin-top: 25px;
             text-align: center;
             padding: 20px;
-            background: linear-gradient(135deg, #e8f4fd 0%, #c3e9ff 100%);
+            background: linear-gradient(135deg, #D4E6F1 0%, #A9CCE3 100%);
             border-radius: 10px;
-            border: 2px solid #3498db;
+            border: 2px solid #2E86C1;
         }
         
         .download-btn {
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            background: linear-gradient(135deg, #1E8449 0%, #27AE60 100%);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -254,7 +340,7 @@
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
             margin: 10px;
             display: inline-flex;
             align-items: center;
@@ -263,8 +349,8 @@
         
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
-            background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+            background: linear-gradient(135deg, #196F3D 0%, #229954 100%);
         }
         
         .download-btn:active {
@@ -279,12 +365,12 @@
         }
         
         .warning-section {
-            background: #ffeceb;
+            background: #FADBD8;
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #e74c3c;
+            border-left: 5px solid #CB4335;
         }
         
         .warning-list {
@@ -327,18 +413,35 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🏥 YOLO肿瘤检测和AI分析系统</h1>
-            <p>基于深度学习的智能医学影像分析平台</p>
+        <div class="navbar">
+            <div class="navbar-brand">
+                <img src="https://img.icons8.com/color/48/000000/brain.png" alt="Logo">
+                <span class="navbar-brand-text">BTDWEB</span>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="nav-icon">🏠</i> 主页
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/history" class="nav-link">
+                        <i class="nav-icon">📋</i> 历史记录
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <i class="nav-icon">🔄</i> 刷新页面
+                    </a>
+                </li>
+            </ul>
         </div>
         
-        <div class="nav-bar" style="background: #f8f9fa; padding: 15px 30px; display: flex; justify-content: flex-end; border-bottom: 1px solid #e9ecef;">
-            <a href="/history" style="color: #3498db; text-decoration: none; font-weight: 500; padding: 8px 15px; border-radius: 20px; transition: all 0.3s ease; margin-right: 10px;">
-                📋 查看历史记录
-            </a>
-            <a href="/" style="color: #3498db; text-decoration: none; font-weight: 500; padding: 8px 15px; border-radius: 20px; transition: all 0.3s ease;">
-                🔄 刷新页面
-            </a>
+        <div class="hero-banner">
+            <div class="hero-content">
+                <h1 class="hero-title">🏥 YOLO肿瘤检测和AI分析系统</h1>
+                <p class="hero-subtitle">基于深度学习的智能医学影像分析平台</p>
+            </div>
         </div>
         
         <div class="main-content">
