@@ -6,5 +6,21 @@
     "image_filename": "20250702091544_M_471_jpg.rf.8d754c982fb229751520ae02b930943b.jpg",
     "model_name": "yolo_model",
     "detections_count": 1
+  },
+  {
+    "timestamp": "2025-07-02T10:03:33.467024",
+    "report_id": "20250702100333",
+    "pdf_filename": "yolo_model-20250702_100333-20250702100333.pdf",
+    "image_filename": "20250702100324_P_47_jpg.rf.3ac011cc3a8f19c1fb3c2a8098b53fe1.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 1
+  },
+  {
+    "timestamp": "2025-07-02T10:04:54.589948",
+    "report_id": "20250702100454",
+    "pdf_filename": "yolo_model-20250702_100454-20250702100454.pdf",
+    "image_filename": "20250702100414_G_316_jpg.rf.7359cfbae3847965f975114baff1ae4d.jpg",
+    "model_name": "yolo_model",
+    "detections_count": 2
   }
 ]

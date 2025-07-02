@@ -122,7 +122,7 @@ def analyze_detection_results(detections, image_filename):
         return f"AI分析过程中发生错误：{str(e)}"
 
 
-def generate_pdf_report(detections, ai_analysis, image_filename, model_name, original_image_path=None, processed_image_path=None):
+def generate_pdf_report(detections, ai_analysis, image_filename, model_name, original_image_path=None, processed_image_path=None, doctor_name=None):
     """
     生成PDF报告，支持中文字体和图片展示
     """
@@ -190,6 +190,10 @@ def generate_pdf_report(detections, ai_analysis, image_filename, model_name, ori
             ['检测模型', model_name],
             ['分析图像', image_filename],
         ]
+        
+        # 添加医生署名信息
+        if doctor_name:
+            basic_info_data.append(['医生署名', doctor_name])
         
         basic_info_table = Table(basic_info_data, colWidths=[2*inch, 4*inch])
         basic_info_table.setStyle(TableStyle([
@@ -349,6 +353,18 @@ def upload_detect():
         # 获取客户端上传的图片和模型
         image_file = request.files.get("image")
         model_file = request.files.get("model")
+        doctor_name = request.form.get("doctor_name")
+        perform_ai_analysis = 'perform_ai_analysis' in request.form
+
+        # 验证医生姓名
+        if not doctor_name or doctor_name.strip() == '':
+            return render_template(
+                'index.html',
+                prediction="请输入医生姓名，此信息必填",
+                detections=[],
+                ai_analysis="",
+                image_path=None
+            )
 
         # 验证文件
         if not image_file or not model_file:
@@ -417,10 +433,14 @@ def upload_detect():
             else:
                 detections.append("未检测到任何对象")
 
-            # 使用AI分析检测结果
-            print("正在进行AI分析...")  # 调试信息
-            ai_analysis = analyze_detection_results(detections, img_filename)
-            print(f"AI分析完成: {ai_analysis[:100]}...")  # 调试信息
+            # 使用AI分析检测结果（如果用户选择了进行AI分析）
+            ai_analysis = ""
+            if perform_ai_analysis:
+                print("正在进行AI分析...")  # 调试信息
+                ai_analysis = analyze_detection_results(detections, img_filename)
+                print(f"AI分析完成: {ai_analysis[:100]}...")  # 调试信息
+            else:
+                ai_analysis = "用户选择不进行AI智能分析"
 
             # 清理临时文件（可选）
             try:
@@ -434,7 +454,8 @@ def upload_detect():
                 'ai_analysis': ai_analysis,
                 'image_filename': img_filename,
                 'model_name': model_file.filename.rsplit('.', 1)[0] if '.' in model_file.filename else model_file.filename,
-                'timestamp': datetime.now().isoformat()
+                'timestamp': datetime.now().isoformat(),
+                'doctor_name': doctor_name
             }
 
             return render_template(
@@ -476,6 +497,7 @@ def download_pdf():
         ai_analysis = data.get('ai_analysis', '')
         image_filename = data.get('image_filename', '')
         model_name = data.get('model_name', 'unknown_model')
+        doctor_name = data.get('doctor_name', '')
         
         # 构建图片路径
         original_image_path = os.path.join(UPLOAD_FOLDER, image_filename) if image_filename else None
@@ -488,7 +510,8 @@ def download_pdf():
             image_filename, 
             model_name,
             original_image_path,
-            processed_image_path
+            processed_image_path,
+            doctor_name
         )
         
         if pdf_path and os.path.exists(pdf_path):

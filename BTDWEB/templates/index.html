@@ -341,8 +341,30 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="submit-btn">
-                        🚀 开始AI智能检测分析
+                    <div class="form-group">
+                        <label for="doctor_name">
+                            <span class="medical-icon">👨‍⚕️</span>
+                            医生署名
+                        </label>
+                        <input type="text" id="doctor_name" name="doctor_name" class="form-control" placeholder="请输入医生姓名（必填）" required style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1em; transition: all 0.3s ease;">
+                        <div class="form-note">
+                            📝 请输入负责此次分析的医生姓名，此信息将显示在生成的PDF报告中
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="perform_ai_analysis" style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="perform_ai_analysis" name="perform_ai_analysis" checked style="margin-right: 10px; width: 20px; height: 20px;">
+                            <span class="medical-icon">🤖</span>
+                            是否进行AI智能分析
+                        </label>
+                        <div class="form-note" style="margin-left: 30px;">
+                            💡 取消勾选将只进行YOLO检测，不进行AI分析
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        🚀 开始YOLO检测与AI分析
                     </button>
                 </div>
             </form>
@@ -350,6 +372,8 @@
             {% if prediction %}
                 <div class="result-section">
                     <h3 class="result-title">📊 {{ prediction }}</h3>
+                    <!-- 隐藏字段存储医生姓名，用于PDF下载 -->
+                    <input type="hidden" id="hidden_doctor_name" value="{{ request.form.get('doctor_name', '') }}">
                     <div class="detection-results">
                         <h4 style="color: #2c3e50; margin-bottom: 15px;">🎯 检测结果详情：</h4>
                         <ul class="detection-list">
@@ -451,6 +475,14 @@
                     // 获取模型名称（从session数据中获取，这里简化处理）
                     const modelName = 'yolo_model';
                     
+                    // 获取医生姓名，如果输入框为空，尝试从会话中获取
+                    let doctorName = document.getElementById('doctor_name').value;
+                    if (!doctorName) {
+                        // 尝试从隐藏字段获取，这个字段会在表单提交后由服务端填充
+                        const hiddenDoctorNameField = document.getElementById('hidden_doctor_name');
+                        doctorName = hiddenDoctorNameField ? hiddenDoctorNameField.value : '';
+                    }
+                    
                     // 发送下载请求
                     fetch('/download_pdf', {
                         method: 'POST',
@@ -461,7 +493,8 @@
                             detections: detections,
                             ai_analysis: aiAnalysis,
                             image_filename: imageFilename,
-                            model_name: modelName
+                            model_name: modelName,
+                            doctor_name: doctorName
                         })
                     })
                     .then(response => {
@@ -509,6 +542,16 @@
                         this.innerHTML = '📥 下载PDF报告';
                     });
                 });
+            }
+        });
+
+        // 更新提交按钮文本，根据AI分析选项
+        document.getElementById('perform_ai_analysis').addEventListener('change', function() {
+            const submitBtn = document.getElementById('submit-btn');
+            if (this.checked) {
+                submitBtn.textContent = '🚀 开始YOLO检测与AI分析';
+            } else {
+                submitBtn.textContent = '🚀 开始YOLO检测（无AI分析）';
             }
         });
     </script>
